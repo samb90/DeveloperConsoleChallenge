@@ -1,12 +1,13 @@
 # Developer Console Challenge
 
-A javascript app to develop an interactive challenge using the developer tools in Google Chrome
+A javascript application to develop an interactive question based challenge using the console in Google Chrome developer tools
 
 ## Installation
 
 Download the app.js file
 
 ## Usage
+
 Edit app.js and add questions to the 'questions' array using the format below:
 
 ```js
