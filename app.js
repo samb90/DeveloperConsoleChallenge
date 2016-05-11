@@ -1,22 +1,22 @@
-var currentQuestion;
+var LINE_BREAK = "*******************************************************",
+    currentQuestion = -1,
+    challengeStarted = false,
+    questions,
+    challenge;
 
-var questions = [
+questions = [
     {
-        "question": "What is 1 + 2?",
-        "answer": "3"
-    },
-    {
-        "question": "What is 5 + 8?",
-        "answer": "13"
+        "question": "",
+        "answer": ""
     }
 ];
 
-var challenge = {
+challenge = {
     begin: function () {
         startChallenge();
     },
     answer: function (answer) {
-        if (isThereAnErrorWithSubmission(answer)){
+        if (validateAnswerInput(answer)){
             error();
         }else{
             if (isAnswerCorrect(answer)){
@@ -29,21 +29,20 @@ var challenge = {
 };
 
 function startChallenge() {
-    outputToConsole("*******************************************************");
+    outputToConsole(LINE_BREAK);
     outputToConsole("Challenge Starts");
-    if ((currentQuestion + 1) < questions.length) {
+    if (isNextQuestion() && challengeStarted === false) {
+        challengeStarted = true;
         getNextQuestion();
-    }else{
-        challengeCompleted();
     }
 }
 
 function challengeCompleted() {
-    outputToConsole("*******************************************************");
+    outputToConsole(LINE_BREAK);
     outputToConsole("Challenge Completed");
 }
 
-function isThereAnErrorWithSubmission(answer) {
+function validateAnswerInput(answer) {
     return answer && answer.length < 1;
 }
 
@@ -52,20 +51,23 @@ function isAnswerCorrect(answer) {
 }
 
 function correctAnswer() {
-    outputToConsole("*******************************************************");
+    outputToConsole(LINE_BREAK);
     outputToConsole("Correct answer");
-    outputToConsole("Next Question");
-    currentQuestion++;
-    getNextQuestion();
+    outputToConsole("Next Question...");
+    if (isNextQuestion()) {
+        getNextQuestion();
+    }else{
+        challengeCompleted();
+    }
 }
 
 function wrongAnswer() {
-    outputToConsole("*******************************************************");
+    outputToConsole(LINE_BREAK);
     outputToConsole("Wrong answer, try again");
 }
 
 function error() {
-    outputToConsole("*******************************************************");
+    outputToConsole(LINE_BREAK);
     outputToConsole("You must pass your answer into the function");
 }
 
@@ -76,11 +78,15 @@ function outputToConsole(stringToOutput) {
 }
 
 function getNextQuestion() {
+    currentQuestion++;
     outputToConsole(questions[currentQuestion].question);
 }
 
+function isNextQuestion() {
+    return (currentQuestion + 1) < questions.length;
+}
+
 function init() {
-    currentQuestion = 0;
 
     outputToConsole("######################################################");
     outputToConsole("_  _  _ _______        _______  _____  _______ _______");
