@@ -8,7 +8,7 @@ Download the app.js file
 
 ## Usage
 
-Edit app.js and add questions to the 'questions' array using the format below:
+Edit app.js and add questions to the '**questions**' array using the format below:
 
 ```js
 questions = [
