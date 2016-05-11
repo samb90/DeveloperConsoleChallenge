@@ -7,7 +7,7 @@ A javascript app to develop an interactive challenge using the developer tools i
 Download the app.js file
 
 ## Usage
-Open app.js and add questions to the 'questions' array.
+Edit app.js and add questions to the 'questions' array using the format below:
 
 ```js
 questions = [
@@ -18,7 +18,7 @@ questions = [
 ];
 ```
 
-Add a new question by creating a new object e.g.
+Add a new question by creating adding a new object to the arrow:
 
 ```js
 questions = [
